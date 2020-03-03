@@ -1,0 +1,58 @@
+{
+    "name": "tarfin-labs/easy-pdf",
+    "description": "Makes pdf processing easy.",
+    "keywords": [
+        "tarfin-labs",
+        "easy-pdf"
+    ],
+    "homepage": "https://github.com/tarfin-labs/easy-pdf",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Faruk Can",
+            "email": "faruk.can@tarfin.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "6.11.0",
+        "khanamiryan/qrcode-detector-decoder": "^1.0",
+        "setasign/fpdi-tcpdf": "^2.2",
+        "spatie/pdf-to-image": "^2.0",
+        "tecnickcom/tcpdf": "^6.3"
+    },
+    "require-dev": {
+        "orchestra/testbench": "4.5.*",
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "TarfinLabs\\EasyPdf\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TarfinLabs\\EasyPdf\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TarfinLabs\\EasyPdf\\EasyPdfServiceProvider"
+            ],
+            "aliases": {
+                "LaravelConfig": "TarfinLabs\\EasyPdf\\EasyPdfFacade"
+            }
+        }
+    }
+}
