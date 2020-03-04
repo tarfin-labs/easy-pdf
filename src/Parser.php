@@ -48,25 +48,47 @@ class Parser
     }
 
     /**
-     * Save pdf with given destination.
+     * Render given source.
      *
-     * @param string $filename
-     * @param string $destination
-     * @return mixed
+     * @return Parser
      * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
      * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
      * @throws \setasign\Fpdi\PdfParser\PdfParserException
      * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
      * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
-    public function savePdf(string $filename, string $destination)
+    public function render()
     {
         $this->pdf = new Fpdi();
         $this->pdf->AddPage();
         $this->pdf->setSourceFile($this->path);
         $this->pdf->useTemplate($this->pdf->importPage($this->page));
 
-        $this->pdf->Output($filename, $destination);
+        return $this;
+    }
+
+    /**
+     * Save pdf to given path..
+     *
+     * @param string $filename
+     * @return mixed
+     */
+    public function savePdf(string $filename)
+    {
+        $this->pdf->Output($filename, 'F');
+
+        return $this;
+    }
+
+    /**
+     * Output the generated PDF to browser.
+     *
+     * @param string $filename
+     * @return $this
+     */
+    public function streamPdf(string $filename)
+    {
+        $this->pdf->Output($filename, 'I');
 
         return $this;
     }
@@ -86,6 +108,5 @@ class Parser
         $imagick->writeImage($filename);
 
         return $this;
-
     }
 }

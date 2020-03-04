@@ -25,8 +25,8 @@ class EasyPdfServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Register the main class to use with the facade
-        $this->app->singleton('easy-pdf', function () {
-            return new EasyPdf;
+        $this->app->singleton(EasyPdf::class, function () {
+            return new EasyPdf();
         });
     }
 }

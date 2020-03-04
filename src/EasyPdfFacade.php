@@ -13,6 +13,6 @@ class EasyPdfFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'easy-pdf';
+        return EasyPdf::class;
     }
 }
