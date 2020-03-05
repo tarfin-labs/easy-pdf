@@ -36,7 +36,6 @@ class EasyPdf
         $this->pdf = new TCPDF();
         $this->pdf->setPrintHeader($this->header);
         $this->pdf->setPrintFooter($this->footer);
-        $this->pdf->AddPage();
     }
 
     /**
@@ -162,6 +161,7 @@ class EasyPdf
      */
     public function loadHtml($html)
     {
+        $this->pdf->AddPage();
         $this->pdf->writeHTML($html);
 
         return $this;

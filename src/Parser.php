@@ -4,7 +4,6 @@ namespace TarfinLabs\EasyPdf;
 
 use Imagick;
 use setasign\Fpdi\Tcpdf\Fpdi;
-use Spatie\PdfToImage\Pdf;
 
 class Parser
 {

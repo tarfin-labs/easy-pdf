@@ -26,7 +26,6 @@
         "illuminate/support": "6.11.0|^7.0",
         "khanamiryan/qrcode-detector-decoder": "^1.0",
         "setasign/fpdi-tcpdf": "^2.2",
-        "spatie/pdf-to-image": "^2.0",
         "tecnickcom/tcpdf": "^6.3"
     },
     "require-dev": {
