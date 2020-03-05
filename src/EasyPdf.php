@@ -243,4 +243,16 @@ class EasyPdf
     {
        return new Qr($path);
     }
+
+    /**
+     * Create a new converter instance.
+     *
+     * @param string $path
+     * @return Converter
+     * @throws \ImagickException
+     */
+    public static function convert(string $path): Converter
+    {
+        return new Converter($path);
+    }
 }

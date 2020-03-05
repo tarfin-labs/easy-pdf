@@ -2,7 +2,6 @@
 
 namespace TarfinLabs\EasyPdf;
 
-use Imagick;
 use setasign\Fpdi\Tcpdf\Fpdi;
 
 class Parser
@@ -20,6 +19,7 @@ class Parser
     public function __construct(string $path)
     {
         $this->path = $path;
+        $this->pdf = new Fpdi();
     }
 
     /**
@@ -29,8 +29,7 @@ class Parser
      */
     public function count(): int
     {
-        $pdf = new Fpdi();
-        return $pdf->setSourceFile($this->path);
+        return $this->pdf->setSourceFile($this->path);
     }
 
     /**
@@ -58,7 +57,6 @@ class Parser
      */
     public function render()
     {
-        $this->pdf = new Fpdi();
         $this->pdf->AddPage();
         $this->pdf->setSourceFile($this->path);
         $this->pdf->useTemplate($this->pdf->importPage($this->page));
@@ -70,42 +68,35 @@ class Parser
      * Save pdf to given path..
      *
      * @param string $filename
-     * @return mixed
+     * @return string
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
-    public function savePdf(string $filename)
+    public function save(string $filename)
     {
-        $this->pdf->Output($filename, 'F');
+        $this->render();
 
-        return $this;
+        return $this->pdf->Output($filename, 'F');
     }
 
     /**
      * Output the generated PDF to browser.
      *
      * @param string $filename
-     * @return $this
+     * @return string
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
-    public function streamPdf(string $filename)
+    public function stream(string $filename)
     {
-        $this->pdf->Output($filename, 'I');
+        $this->render();
 
-        return $this;
-    }
-
-    /**
-     * Save pdf as image.
-     *
-     * @param string $filename
-     * @param string|null $format
-     * @return Parser
-     * @throws \ImagickException
-     */
-    public function saveImage(string $filename, string $format=null)
-    {
-        $imagick = new Imagick();
-        $imagick->readImage($this->path);
-        $imagick->writeImage($filename);
-
-        return $this;
+        return $this->pdf->Output($filename, 'I');
     }
 }
