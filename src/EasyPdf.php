@@ -195,7 +195,7 @@ class EasyPdf
     }
 
     /**
-     * Add qrcode to the pdf with given position and size.
+     * Add qrcode with best error correction to the pdf with given position and size.
      *
      * @param $text
      * @param $x
@@ -208,6 +208,24 @@ class EasyPdf
     public function addQrcode($text, $x, $y, $width, $height, $position = 'N')
     {
         $this->pdf->write2DBarcode($text, 'QRCODE,H', $x, $y, $width, $height, $this->style, $position);
+
+        return $this;
+    }
+
+    /**
+     * Add RAW2 barcode to the pdf with given position and size.
+     *
+     * @param $code
+     * @param $x
+     * @param $y
+     * @param $width
+     * @param $height
+     * @param string $position
+     * @return EasyPdf
+     */
+    public function addBarcode($code, $x, $y, $width, $height, $position = 'N')
+    {
+        $this->pdf->write2DBarcode($code, 'RAW2', $x, $y, $width, $height, $this->style, $position);
 
         return $this;
     }
@@ -281,7 +299,7 @@ class EasyPdf
      * @param array $files
      * @return Merge
      */
-    public function merge(array $files)
+    public static function merge(array $files)
     {
         return new Merge($files);
     }

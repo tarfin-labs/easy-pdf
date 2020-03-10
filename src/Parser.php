@@ -31,6 +31,8 @@ class Parser
     {
         $this->path = $path;
         $this->pdf = new Fpdi();
+        $this->pdf->setPrintHeader(false);
+        $this->pdf->setPrintFooter(false);
     }
 
     /**

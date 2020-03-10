@@ -40,6 +40,8 @@ class ParserTest extends TestCase
         $fileCount = EasyPdf::parser($filePath)
             ->count();
 
+        $this->assertFileExists(sys_get_temp_dir().'parsed.pdf');
+
         $this->assertEquals(1, $fileCount);
     }
 
