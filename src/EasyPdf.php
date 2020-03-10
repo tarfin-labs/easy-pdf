@@ -74,7 +74,7 @@ class EasyPdf
      */
     protected function setInformation($information, $value)
     {
-        $fn = 'Set' . $information;
+        $fn = 'Set'.$information;
 
         if (is_array($value)) {
             call_user_func([$this->pdf, $fn], ...$value);
@@ -109,7 +109,7 @@ class EasyPdf
      */
     protected function setConfig($config, $value)
     {
-        $fn = 'set' . $config;
+        $fn = 'set'.$config;
 
         if (is_array($value)) {
             call_user_func([$this->pdf, $fn], ...$value);
@@ -127,7 +127,7 @@ class EasyPdf
      * @param int|null $size
      * @return EasyPdf
      */
-    public function addFont(string $font, int $size=null)
+    public function addFont(string $font, int $size = null)
     {
         $tcpdfFont = TCPDF_FONTS::addTTFfont($font);
 
@@ -143,7 +143,7 @@ class EasyPdf
      * @param int|null $size
      * @return $this
      */
-    public function setFont(string $font, int $size=null)
+    public function setFont(string $font, int $size = null)
     {
         $this->pdf->SetFont($font, '', $size);
 
@@ -237,7 +237,7 @@ class EasyPdf
      */
     public function setHeader($header = null)
     {
-        if (!is_null($header)) {
+        if (! is_null($header)) {
             $this->header = $header;
         }
 
@@ -251,7 +251,7 @@ class EasyPdf
      */
     public function setFooter($footer = null)
     {
-        if (!is_null($footer)) {
+        if (! is_null($footer)) {
             $this->footer = $footer;
         }
 
