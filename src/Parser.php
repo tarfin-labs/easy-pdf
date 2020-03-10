@@ -110,4 +110,22 @@ class Parser
 
         return $this->pdf->Output($filename, 'I');
     }
+
+    /**
+     * Return the pdf as a string.
+     *
+     * @param $filename
+     * @return string
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
+     */
+    public function content($filename)
+    {
+        $this->render();
+
+        return $this->pdf->Output($filename, 'S');
+    }
 }
