@@ -2,6 +2,7 @@
 
 namespace TarfinLabs\EasyPdf\Tests;
 
+use finfo;
 use PHPUnit\Framework\TestCase;
 use TarfinLabs\EasyPdf\EasyPdf;
 
@@ -31,29 +32,26 @@ class ParserTest extends TestCase
     /** @test */
     public function it_can_parse_pdf_by_page()
     {
-        $filePath = sys_get_temp_dir().'parsed.pdf';
-
         $file = EasyPdf::parser($this->file)
             ->setPage(2)
-            ->save($filePath);
+            ->content();
 
-        $fileCount = EasyPdf::parser($filePath)
-            ->count();
+        $finfo = new finfo(1040);
+        $buffer = $finfo->buffer($file);
 
-        $this->assertFileExists(sys_get_temp_dir().'parsed.pdf');
-
-        $this->assertEquals(1, $fileCount);
+        $this->assertSame('application/pdf; charset=binary', $buffer);
     }
 
     /** @test */
     public function it_can_return_pdf_content()
     {
-        $filePath = sys_get_temp_dir().'parsed.pdf';
-
         $file = EasyPdf::parser($this->file)
             ->setPage(2)
             ->content();
 
-        $this->assertSame(true, is_string($file));
+        $finfo = new finfo(1040);
+        $buffer = $finfo->buffer($file);
+
+        $this->assertSame('application/pdf; charset=binary', $buffer);
     }
 }

@@ -33,18 +33,18 @@ $pdf = EasyPdf::withInformation([
     ->withConfig([
         'ImageScale' => PDF_IMAGE_SCALE_RATIO,
 ])
-    ->setFont('times', 16)
-    ->loadHtml($html)
-    ->content();
+    ->setFont('times', 16) // use default fonts
+    ->loadHtml($html) // each load html creates a new page
+    ->content(); // return pdf content as a string
 ```
 
-This will return pdf content as a string. If you want save pdf use save:
+This will return pdf content as a string. If you want save pdf, use save method:
 
 ``` php
 $pdf->save($filePath);
 ```
 
-Also you can stream pdf directly to the browser using:
+Also you can stream pdf directly to the browser using stream method:
 
 ``` php
 $pdf->stream();
@@ -62,6 +62,52 @@ $pdf->setFont('helvetica', 16);
 If you want the use default fonts here is the list:
 `courier`, `courierB`, `courierBI`, `courierI`, `helvetica`, `helveticaB`, `helveticaBI`, `helveticaI`, `symbol`, `times`, `timesB`, `timesBI`, `timesI`, `zapfdingbats`
 
+Easy pdf provides basic barcode support like qrcode and raw2 barcode.
+
+``` php
+// This will add barcode to the pdf with given dimensions.
+$code = '[111011101110111][010010001000010][010011001110010][010010000010010][010011101110010]';
+$pdf->addBarcode($code, 80, 60, 30, 20); // x-y coordinates and width-height
+
+// // This will add qrcode with best error correction to the pdf with given dimensions.
+$pdf->addQrcode('tarfin', 80, 60, 30, 20); // x-y coordinates and width-height
+```
+
+You can add image to the pdf with dimensions.
+``` php
+// This will add image to the pdf with given dimensions.
+$pdf->addImage($imagePath, 80, 60, 30, 20); // x-y coordinates and width-height
+```
+
+### Parsing pdf
+
+You can parse the pdf and get the page you want.
+
+``` php
+// This will return pdf page count.
+$fileCount = EasyPdf::parser($file)->count();
+
+// You can use stream or content method here as well.
+$parsedPdf = EasyPdf::parser($file)
+    ->setPage(1)
+    ->save(storage_path('app/imports/new.pdf'));
+```
+
+### Merging pdf
+
+You can merge multiple pdf into the one with easily using easy-pdf.
+
+``` php
+// Pdf paths.
+$files = [
+    '/path/to/the/file.pdf',
+    '/path/to/the/anotherFile.pdf',
+];
+
+// You can use stream or content method here as well.
+$pdf = EasyPdf::merge($files)
+            ->content();
+```
 
 ### Testing
 

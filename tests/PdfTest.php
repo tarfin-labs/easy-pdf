@@ -2,6 +2,7 @@
 
 namespace TarfinLabs\EasyPdf\Tests;
 
+use finfo;
 use PHPUnit\Framework\TestCase;
 use TarfinLabs\EasyPdf\EasyPdf;
 
@@ -17,7 +18,7 @@ class PdfTest extends TestCase
         </p>';
 
         $easyPdf = new EasyPdf();
-        $easyPdf->withInformation([
+        $pdf = $easyPdf->withInformation([
             'Title' => 'Tarfin',
             'Subject' => 'Tarfin',
             'Keywords' => 'easy-pdf, pdf',
@@ -29,8 +30,12 @@ class PdfTest extends TestCase
                 'ImageScale' => PDF_IMAGE_SCALE_RATIO,
             ])
             ->setFont('helvetica', 16)
-            ->loadHtml($html)->save($filePath);
+            ->loadHtml($html)
+            ->content();
 
-        $this->assertFileExists($filePath);
+        $finfo = new finfo(1040);
+        $buffer = $finfo->buffer($pdf);
+
+        $this->assertSame('application/pdf; charset=binary', $buffer);
     }
 }

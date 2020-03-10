@@ -2,6 +2,7 @@
 
 namespace TarfinLabs\EasyPdf\Tests;
 
+use finfo;
 use PHPUnit\Framework\TestCase;
 use TarfinLabs\EasyPdf\EasyPdf;
 
@@ -22,17 +23,12 @@ class MergeTest extends TestCase
     /** @test */
     public function it_can_merge_multiple_files_into_one_file()
     {
-        $filePath = sys_get_temp_dir().'merged.pdf';
+        $pdf = EasyPdf::merge($this->files)
+            ->content();
 
-        EasyPdf::merge($this->files)
-            ->save($filePath);
+        $finfo = new finfo(1040);
+        $buffer = $finfo->buffer($pdf);
 
-        $this->assertFileExists($filePath);
-
-        $count = EasyPdf::parser($filePath)
-            ->count();
-
-        $this->assertEquals(2, $count);
-
+        $this->assertSame('application/pdf; charset=binary', $buffer);
     }
 }
