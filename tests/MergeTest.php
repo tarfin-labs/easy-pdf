@@ -16,7 +16,7 @@ class MergeTest extends TestCase
 
         $this->files = [
             __DIR__.'/files/file.pdf',
-            __DIR__.'/files/anotherFile.pdf'
+            __DIR__.'/files/anotherFile.pdf',
         ];
     }
 
