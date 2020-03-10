@@ -12,7 +12,6 @@ class EasyPdfServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('easy-pdf.php'),
             ], 'easy-pdf');
