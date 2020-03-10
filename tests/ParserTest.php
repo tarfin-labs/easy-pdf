@@ -10,7 +10,7 @@ class ParserTest extends TestCase
     /**
      * @var string
      */
-    protected string $file;
+    protected $file;
 
     protected function setUp(): void
     {

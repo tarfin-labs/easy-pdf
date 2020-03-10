@@ -33,9 +33,6 @@
         "orchestra/testbench": "4.5.*",
         "phpunit/phpunit": "^8.5"
     },
-    "suggest": {
-        "ext-imagick" : "*"
-    },
     "autoload": {
         "psr-4": {
             "TarfinLabs\\EasyPdf\\": "src"

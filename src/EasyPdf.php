@@ -29,6 +29,18 @@ class EasyPdf
     protected $footer = false;
 
     /**
+     * Barcode style.
+     *
+     * @var array
+     */
+    private $style = [
+        'border' => false,
+        'padding' => 0,
+        'fgcolor' => [0, 0, 0],
+        'bgcolor' => false,
+    ];
+
+    /**
      * EasyPdf constructor.
      */
     public function __construct()
@@ -112,28 +124,14 @@ class EasyPdf
      * Add custom font on the pdf instance.
      *
      * @param string $font
+     * @param int|null $size
      * @return EasyPdf
      */
-    public function withFont(string $font)
+    public function addFont(string $font, int $size=null)
     {
         $tcpdfFont = TCPDF_FONTS::addTTFfont($font);
 
-        $this->pdf->AddFont($tcpdfFont);
-
-        return $this;
-    }
-
-    /**
-     * Add custom fonts on the pdf instance.
-     *
-     * @param array $fonts
-     * @return EasyPdf
-     */
-    public function withFonts(array $fonts)
-    {
-        foreach ($fonts as $font) {
-            $this->withFont($font);
-        }
+        $this->pdf->SetFont($tcpdfFont, '', $size);
 
         return $this;
     }
@@ -142,13 +140,12 @@ class EasyPdf
      * Set given font as default font.
      *
      * @param string $font
+     * @param int|null $size
      * @return $this
      */
-    public function setFont(string $font)
+    public function setFont(string $font, int $size=null)
     {
-        $tcpdfFont = TCPDF_FONTS::addTTFfont($font);
-
-        $this->pdf->SetFont($tcpdfFont);
+        $this->pdf->SetFont($font, '', $size);
 
         return $this;
     }
@@ -167,6 +164,59 @@ class EasyPdf
         return $this;
     }
 
+    /**
+     * Add image to the pdf with given position and size.
+     *
+     * @param $image
+     * @param $x
+     * @param $y
+     * @param $width
+     * @param $height
+     * @return EasyPdf
+     */
+    public function addImage($image, $x, $y, $width, $height)
+    {
+        $this->pdf->Image($image, $x, $y, $width, $height);
+
+        return $this;
+    }
+
+    /**
+     * Override default style for barcode.
+     *
+     * @param array $style
+     * @return $this
+     */
+    public function setBarcodeStyle(array $style)
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * Add qrcode to the pdf with given position and size.
+     *
+     * @param $text
+     * @param $x
+     * @param $y
+     * @param $width
+     * @param $height
+     * @param string $position
+     * @return EasyPdf
+     */
+    public function addQrcode($text, $x, $y, $width, $height, $position = 'N')
+    {
+        $this->pdf->write2DBarcode($text, 'QRCODE,H', $x, $y, $width, $height, $this->style, $position);
+
+        return $this;
+    }
+
+    /**
+     * Set Tcpdf print header.
+     *
+     * @param null $header
+     */
     public function setHeader($header = null)
     {
         if (!is_null($header)) {
@@ -176,6 +226,11 @@ class EasyPdf
         $this->pdf->setPrintHeader($this->header);
     }
 
+    /**
+     * Set Tcpdf print footer.
+     *
+     * @param null $footer
+     */
     public function setFooter($footer = null)
     {
         if (!is_null($footer)) {
@@ -212,7 +267,7 @@ class EasyPdf
     }
 
     /**
-     * Return pdf content as a string.
+     * Return pdf as a string.
      *
      * @param string $filename
      * @return string
@@ -220,6 +275,17 @@ class EasyPdf
     public function content(string $filename)
     {
         return $this->pdf->Output($filename, 'S');
+    }
+
+    /**
+     * Create a new Merge instance.
+     *
+     * @param array $files
+     * @return Merge
+     */
+    public function merge(array $files)
+    {
+        return new Merge($files);
     }
 
     /**
@@ -231,28 +297,5 @@ class EasyPdf
     public static function parser(string $path): Parser
     {
         return new Parser($path);
-    }
-
-    /**
-     * Create a new Qr instance.
-     *
-     * @param string $path
-     * @return Qr
-     */
-    public static function qr(string $path): Qr
-    {
-       return new Qr($path);
-    }
-
-    /**
-     * Create a new converter instance.
-     *
-     * @param string $path
-     * @return Converter
-     * @throws \ImagickException
-     */
-    public static function convert(string $path): Converter
-    {
-        return new Converter($path);
     }
 }

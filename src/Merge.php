@@ -4,12 +4,12 @@ namespace TarfinLabs\EasyPdf;
 
 use setasign\Fpdi\Tcpdf\Fpdi;
 
-class Parser
+class Merge
 {
     /**
-     * @var string
+     * @var array
      */
-    protected $path;
+    protected $files;
 
     /**
      * @var Fpdi
@@ -17,49 +17,23 @@ class Parser
     protected $pdf;
 
     /**
-     * @var int
-     */
-    protected $page;
-
-    /**
-     * Create a new Parser instance with pdf file path.
+     * Merge constructor.
      *
-     * Parser constructor.
-     * @param string $path
+     * @param array $files
      */
-    public function __construct(string $path)
+    public function __construct(array $files)
     {
-        $this->path = $path;
+        $this->files = $files;
+
         $this->pdf = new Fpdi();
+        $this->pdf->setPrintHeader(false);
+        $this->pdf->setPrintFooter(false);
     }
 
     /**
-     * Return pdf page count.
+     * Merge pdf files into one pdf.
      *
-     * @throws \setasign\Fpdi\PdfParser\PdfParserException
-     */
-    public function count(): int
-    {
-        return $this->pdf->setSourceFile($this->path);
-    }
-
-    /**
-     * Set page for save methods.
-     *
-     * @param int $page
-     * @return Parser
-     */
-    public function setPage(int $page)
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
-    /**
-     * Render given source.
-     *
-     * @return Parser
+     * @return $this
      * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
      * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
      * @throws \setasign\Fpdi\PdfParser\PdfParserException
@@ -68,9 +42,15 @@ class Parser
      */
     public function render()
     {
-        $this->pdf->AddPage();
-        $this->pdf->setSourceFile($this->path);
-        $this->pdf->useTemplate($this->pdf->importPage($this->page));
+        foreach ($this->files as $file) {
+            $count = $this->pdf->setSourceFile($file);
+
+            for ($page = 1; $page <= $count; $page++) {
+                $this->pdf->AddPage();
+                $importedPage = $this->pdf->ImportPage($page);
+                $this->pdf->useTemplate($importedPage);
+            }
+        }
 
         return $this;
     }
@@ -109,5 +89,23 @@ class Parser
         $this->render();
 
         return $this->pdf->Output($filename, 'I');
+    }
+
+    /**
+     * Return the pdf as a string.
+     *
+     * @param $filename
+     * @return string
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
+     */
+    public function content($filename)
+    {
+        $this->render();
+
+        return $this->pdf->Output($filename, 'S');
     }
 }
