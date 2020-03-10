@@ -35,8 +35,6 @@ class Parser
 
     /**
      * Return pdf page count.
-     *
-     * @throws \setasign\Fpdi\PdfParser\PdfParserException
      */
     public function count(): int
     {
@@ -60,11 +58,6 @@ class Parser
      * Render given source.
      *
      * @return Parser
-     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
-     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
-     * @throws \setasign\Fpdi\PdfParser\PdfParserException
-     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
-     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
     public function render()
     {
@@ -80,11 +73,6 @@ class Parser
      *
      * @param string $filename
      * @return string
-     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
-     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
-     * @throws \setasign\Fpdi\PdfParser\PdfParserException
-     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
-     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
     public function save(string $filename)
     {
@@ -96,36 +84,24 @@ class Parser
     /**
      * Send the Pdf inline to the browser.
      *
-     * @param string $filename
      * @return string
-     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
-     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
-     * @throws \setasign\Fpdi\PdfParser\PdfParserException
-     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
-     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
-    public function stream(string $filename)
+    public function stream()
     {
         $this->render();
 
-        return $this->pdf->Output($filename, 'I');
+        return $this->pdf->Output('doc.pdf', 'I');
     }
 
     /**
      * Return the pdf as a string.
      *
-     * @param $filename
      * @return string
-     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
-     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
-     * @throws \setasign\Fpdi\PdfParser\PdfParserException
-     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
-     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
      */
-    public function content($filename)
+    public function content()
     {
         $this->render();
 
-        return $this->pdf->Output($filename, 'S');
+        return $this->pdf->Output('doc.pdf', 'S');
     }
 }

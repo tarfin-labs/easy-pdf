@@ -256,12 +256,11 @@ class EasyPdf
     /**
      * Output the generated PDF to browser.
      *
-     * @param string $filename
      * @return $this
      */
-    public function stream(string $filename)
+    public function stream()
     {
-        $this->pdf->Output($filename, 'I');
+        $this->pdf->Output('doc.pdf', 'I');
 
         return $this;
     }
@@ -269,12 +268,11 @@ class EasyPdf
     /**
      * Return pdf as a string.
      *
-     * @param string $filename
      * @return string
      */
-    public function content(string $filename)
+    public function content()
     {
-        return $this->pdf->Output($filename, 'S');
+        return $this->pdf->Output('doc.pdf', 'S');
     }
 
     /**

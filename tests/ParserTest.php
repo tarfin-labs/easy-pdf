@@ -31,7 +31,7 @@ class ParserTest extends TestCase
     /** @test */
     public function it_can_parse_pdf_by_page()
     {
-        $filePath = sys_get_temp_dir().'new.png';
+        $filePath = sys_get_temp_dir().'parsed.pdf';
 
         $file = EasyPdf::parser($this->file)
             ->setPage(2)
@@ -41,5 +41,17 @@ class ParserTest extends TestCase
             ->count();
 
         $this->assertEquals(1, $fileCount);
+    }
+
+    /** @test */
+    public function it_can_return_pdf_content()
+    {
+        $filePath = sys_get_temp_dir().'parsed.pdf';
+
+        $file = EasyPdf::parser($this->file)
+            ->setPage(2)
+            ->content();
+
+        $this->assertSame(true, is_string($file));
     }
 }
