@@ -18,9 +18,9 @@ composer require tarfin-labs/easy-pdf
 
 ## Usage
 
-### Creating pdf loading html.
+### Creating pdf with html.
 
-You can create pdf file loading html and setting pdf informatin. Also you can use default fonts and if you want you can add custom ttf fonts.
+You can create a pdf with html. Easy-pdf also provides easy configuration with tcpdf pdf settings and informations. 
 
 ``` php
 $pdf = EasyPdf::withInformation([
@@ -41,16 +41,17 @@ $pdf = EasyPdf::withInformation([
 This will return pdf content as a string. If you want save pdf, use save method:
 
 ``` php
+// This will save pdf to given path.
 $pdf->save($filePath);
 ```
 
 Also you can stream pdf directly to the browser using stream method:
-
 ``` php
+// This will stream pdf to the directly browser.
 $pdf->stream();
 ```
 
-You can add custom TTF font using addFont:
+You can add custom TTF font using addFont or use default fonts:
 ``` php
 // Add custom font using font path
 $pdf->addFont($fontPath, $fontSize);
@@ -59,10 +60,10 @@ $pdf->addFont($fontPath, $fontSize);
 $pdf->setFont('helvetica', 16);
 ```
 
-If you want the use default fonts here is the list:
+If you want the use default fonts, here is the list:
 `courier`, `courierB`, `courierBI`, `courierI`, `helvetica`, `helveticaB`, `helveticaBI`, `helveticaI`, `symbol`, `times`, `timesB`, `timesBI`, `timesI`, `zapfdingbats`
 
-Easy pdf provides basic barcode support like qrcode and raw2 barcode.
+Easy pdf provides barcode and qrcode support.
 
 ``` php
 // This will add barcode to the pdf with given dimensions.
@@ -82,7 +83,6 @@ $pdf->addImage($imagePath, 80, 60, 30, 20); // x-y coordinates and width-height
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.
-
 ``` php
 // This will return pdf page count.
 $fileCount = EasyPdf::parser($file)->count();
@@ -96,7 +96,6 @@ $parsedPdf = EasyPdf::parser($file)
 ### Merging pdf
 
 You can merge multiple pdf into the one with easily using easy-pdf.
-
 ``` php
 // Pdf paths.
 $files = [
