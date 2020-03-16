@@ -3,7 +3,6 @@
 namespace TarfinLabs\EasyPdf;
 
 use setasign\Fpdi\PdfParser\StreamReader;
-use setasign\Fpdi\Tcpdf\Fpdi;
 
 class Merge extends BasePdf
 {
