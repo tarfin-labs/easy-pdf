@@ -30,6 +30,17 @@ class ParserTest extends TestCase
     }
 
     /** @test */
+    public function it_can_use_pdf_content_as_a_parameter()
+    {
+        $content = file_get_contents($this->file);
+
+        $fileCount = EasyPdf::parser($content)
+            ->count();
+
+        $this->assertEquals(3, $fileCount);
+    }
+
+    /** @test */
     public function it_can_parse_pdf_by_page()
     {
         $file = EasyPdf::parser($this->file)

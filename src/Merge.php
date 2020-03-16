@@ -2,19 +2,15 @@
 
 namespace TarfinLabs\EasyPdf;
 
+use setasign\Fpdi\PdfParser\StreamReader;
 use setasign\Fpdi\Tcpdf\Fpdi;
 
-class Merge
+class Merge extends BasePdf
 {
     /**
      * @var array
      */
     protected $files;
-
-    /**
-     * @var Fpdi
-     */
-    protected $pdf;
 
     /**
      * Merge constructor.
@@ -23,22 +19,24 @@ class Merge
      */
     public function __construct(array $files)
     {
-        $this->files = $files;
+        parent::__construct();
 
-        $this->pdf = new Fpdi();
-        $this->pdf->setPrintHeader(false);
-        $this->pdf->setPrintFooter(false);
+        $this->files = $files;
     }
 
     /**
      * Merge pdf files into one pdf.
      *
      * @return $this
+     *
+     * @throws Exceptions\UnableToOpen
      */
     public function render()
     {
         foreach ($this->files as $file) {
-            $count = $this->pdf->setSourceFile($file);
+            $this->setFileContent($file);
+
+            $count = $this->pdf->setSourceFile(StreamReader::createByString($this->content));
 
             for ($page = 1; $page <= $count; $page++) {
                 $this->pdf->AddPage();
@@ -48,42 +46,5 @@ class Merge
         }
 
         return $this;
-    }
-
-    /**
-     * Save to a local server file with the name given by name.
-     *
-     * @param string $filename
-     * @return string
-     */
-    public function save(string $filename)
-    {
-        $this->render();
-
-        return $this->pdf->Output($filename, 'F');
-    }
-
-    /**
-     * Send the Pdf inline to the browser.
-     *
-     * @return string
-     */
-    public function stream()
-    {
-        $this->render();
-
-        return $this->pdf->Output('doc.pdf', 'I');
-    }
-
-    /**
-     * Return the pdf as a string.
-     *
-     * @return string
-     */
-    public function content()
-    {
-        $this->render();
-
-        return $this->pdf->Output('doc.pdf', 'S');
     }
 }

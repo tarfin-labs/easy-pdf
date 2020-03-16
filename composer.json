@@ -24,7 +24,8 @@
         "php": "^7.2",
         "illuminate/support": "6.11.0|^7.0",
         "setasign/fpdi-tcpdf": "^2.2",
-        "tecnickcom/tcpdf": "^6.3"
+        "tecnickcom/tcpdf": "^6.3",
+        "ext-fileinfo": "*"
     },
     "require-dev": {
         "mockery/mockery": "^1.3",

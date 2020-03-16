@@ -2,9 +2,9 @@
 
 namespace TarfinLabs\EasyPdf;
 
-use setasign\Fpdi\Tcpdf\Fpdi;
+use setasign\Fpdi\PdfParser\StreamReader;
 
-class Parser
+class Parser extends BasePdf
 {
     /**
      * @var string
@@ -12,35 +12,34 @@ class Parser
     protected $path;
 
     /**
-     * @var Fpdi
-     */
-    protected $pdf;
-
-    /**
      * @var int
      */
     protected $page;
 
     /**
-     * Create a new Parser instance with pdf file path.
-     *
      * Parser constructor.
+     *
      * @param string $path
+     * @throws Exceptions\UnableToOpen
      */
     public function __construct(string $path)
     {
+        parent::__construct();
+
         $this->path = $path;
-        $this->pdf = new Fpdi();
-        $this->pdf->setPrintHeader(false);
-        $this->pdf->setPrintFooter(false);
+        $this->setFileContent($this->path);
     }
 
     /**
      * Return pdf page count.
+     *
+     * @return int
+     *
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
      */
     public function count(): int
     {
-        return $this->pdf->setSourceFile($this->path);
+        return $this->pdf->setSourceFile(StreamReader::createByString($this->content));
     }
 
     /**
@@ -64,46 +63,11 @@ class Parser
     public function render()
     {
         $this->pdf->AddPage();
-        $this->pdf->setSourceFile($this->path);
+
+        $this->pdf->setSourceFile(StreamReader::createByString($this->content));
+
         $this->pdf->useTemplate($this->pdf->importPage($this->page));
 
         return $this;
-    }
-
-    /**
-     * Save to a local server file with the name given by name.
-     *
-     * @param string $filename
-     * @return string
-     */
-    public function save(string $filename)
-    {
-        $this->render();
-
-        return $this->pdf->Output($filename, 'F');
-    }
-
-    /**
-     * Send the Pdf inline to the browser.
-     *
-     * @return string
-     */
-    public function stream()
-    {
-        $this->render();
-
-        return $this->pdf->Output('doc.pdf', 'I');
-    }
-
-    /**
-     * Return the pdf as a string.
-     *
-     * @return string
-     */
-    public function content()
-    {
-        $this->render();
-
-        return $this->pdf->Output('doc.pdf', 'S');
     }
 }
