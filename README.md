@@ -85,6 +85,7 @@ $pdf->addImage($imagePath, 80, 60, 30, 20); // x-y coordinates and width-height
 You can parse the pdf and get the page you want.
 ``` php
 // This will return pdf page count.
+// $file can be path, url or blob.
 $fileCount = EasyPdf::parser($file)->count();
 
 // You can use stream or content method here as well.
@@ -98,6 +99,7 @@ $parsedPdf = EasyPdf::parser($file)
 You can merge multiple pdf into the one with easily using easy-pdf.
 ``` php
 // Pdf paths.
+// Pdf paths can be path, url or blob.
 $files = [
     '/path/to/the/file.pdf',
     '/path/to/the/anotherFile.pdf',
