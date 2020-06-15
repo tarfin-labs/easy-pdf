@@ -110,6 +110,29 @@ $pdf = EasyPdf::merge($files)
             ->content();
 ```
 
+### Resetting the instance
+If you try to generate pdf inside a Laravel queue, sometimes there might occure an error like `undefined property: TCPDF::$h`.
+
+The error occurs 2nd time you use the EasyPdf facade after you already created a PDF. Since EasPdf service is registered as singleton to the service container, it returns the same instance when you use it 2nd time and somehow it's broken.
+
+To avoid the error which mentioned above you can use `reset()` method in the beginning. This will return a new TCPDF instance.
+
+```php
+$pdf = EasyPdf::reset()
+    ->withInformation([
+        'Creator'   => 'Tarfin',
+        'Author'    => 'Faruk Can',
+        'Title'     => 'EasyPdf',
+        'Keywords'  => 'easy, pdf',
+        'AutoPageBreak' => [true, 0],
+    ])
+    ->withConfig([
+            'ImageScale' => PDF_IMAGE_SCALE_RATIO,
+    ])
+    ->setFont('times', 16) // use default fonts
+    ->loadHtml($html) // each load html creates a new page
+    ->content(); // return pdf content as a string
+```
 ### Testing
 
 ``` bash

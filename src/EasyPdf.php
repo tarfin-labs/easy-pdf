@@ -294,6 +294,18 @@ class EasyPdf
     }
 
     /**
+     * Create a new TCPDF instance
+     * 
+     * @return $this
+     */
+    public function reset()
+    {
+        $this->pdf = new TCPDF();
+
+        return $this;
+    }
+
+    /**
      * Create a new Merge instance.
      *
      * @param array $files
