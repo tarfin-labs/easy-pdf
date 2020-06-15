@@ -294,8 +294,8 @@ class EasyPdf
     }
 
     /**
-     * Create a new TCPDF instance
-     * 
+     * Create a new TCPDF instance.
+     *
      * @return $this
      */
     public function reset()
