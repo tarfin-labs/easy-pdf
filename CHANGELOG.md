@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 1.2.1 - 2020-07-09
+- Now `setHeader()` and `setFooter()` methods returns EasyPdf instance.
+
 ## 1.2.0 - 2020-06-15
 - `reset()` method added for creating new tcpdf instance.
 

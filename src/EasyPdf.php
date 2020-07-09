@@ -234,6 +234,7 @@ class EasyPdf
      * Set Tcpdf print header.
      *
      * @param null $header
+     * @return EasyPdf
      */
     public function setHeader($header = null)
     {
@@ -242,12 +243,15 @@ class EasyPdf
         }
 
         $this->pdf->setPrintHeader($this->header);
+
+        return $this;
     }
 
     /**
      * Set Tcpdf print footer.
      *
      * @param null $footer
+     * @return EasyPdf
      */
     public function setFooter($footer = null)
     {
@@ -256,6 +260,8 @@ class EasyPdf
         }
 
         $this->pdf->setPrintFooter($this->footer);
+
+        return $this;
     }
 
     /**
@@ -321,6 +327,7 @@ class EasyPdf
      *
      * @param string $path
      * @return Parser
+     * @throws Exceptions\UnableToOpen
      */
     public static function parser(string $path): Parser
     {

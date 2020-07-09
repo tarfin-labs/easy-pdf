@@ -133,6 +133,15 @@ $pdf = EasyPdf::reset()
     ->loadHtml($html) // each load html creates a new page
     ->content(); // return pdf content as a string
 ```
+
+### Pdf Header and Setter
+After using `reset()` method for creating new Tcpdf instance for each page, automatically header line added to Pdf. Whether you want or not you can use `setHeader' for print header or `setFooter` for print footer content.
+
+```php
+$pdf = EasyPdf::reset()
+    ->setHeader(false);
+```
+
 ### Testing
 
 ``` bash
