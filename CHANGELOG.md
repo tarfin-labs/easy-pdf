@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.0.0 - 2020-10-06
+- Add support for Laravel 8.
+
 ## 1.2.1 - 2020-07-09
 - Now `setHeader()` and `setFooter()` methods returns EasyPdf instance.
 
