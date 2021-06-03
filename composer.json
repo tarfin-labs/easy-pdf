@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "illuminate/support": "6.11.0|^7.0|^8.0",
         "setasign/fpdi-tcpdf": "^2.2",
         "tecnickcom/tcpdf": "^6.3",

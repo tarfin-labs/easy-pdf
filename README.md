@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/tarfin-labs/easy-pdf.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/easy-pdf)
 
 ## Introduction
-easy-pdf is a [tcpdf](https://tcpdf.org/) wrapper for Laravel 6.x and 7.x.
+easy-pdf is a [tcpdf](https://tcpdf.org/) wrapper for Laravel 6.x, 7.x and 8.x.
 
 ## Installation
 
