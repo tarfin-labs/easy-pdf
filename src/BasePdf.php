@@ -92,7 +92,7 @@ abstract class BasePdf
     /**
      * Save to a local server file with the name given by name.
      *
-     * @param string $filename
+     * @param  string  $filename
      * @return string
      */
     public function save(string $filename)

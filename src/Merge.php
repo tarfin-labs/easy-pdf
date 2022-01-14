@@ -14,7 +14,7 @@ class Merge extends BasePdf
     /**
      * Merge constructor.
      *
-     * @param array $files
+     * @param  array  $files
      */
     public function __construct(array $files)
     {
