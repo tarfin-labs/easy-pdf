@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.2.0 - 2022-01-14
+- `$pdf` variable changed to public variable in `EasyPdf.php`
+
 ## 2.1.0 - 2021-06-03
 - PHP 8 support added.
 

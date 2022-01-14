@@ -12,7 +12,7 @@ class EasyPdf
      *
      * @var TCPDF
      */
-    protected $pdf;
+    public $pdf;
 
     /**
      * Pdf header data.
