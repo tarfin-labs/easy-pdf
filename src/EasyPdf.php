@@ -182,7 +182,6 @@ class EasyPdf
             $this->pdf->Image($image, $x, $y, $width, $height);
         }
 
-
         return $this;
     }
 
