@@ -53,7 +53,7 @@ class EasyPdf
     /**
      * Add an array of information to the pdf instance.
      *
-     * @param array $information
+     * @param  array  $information
      * @return EasyPdf
      */
     public function withInformation(array $information)
@@ -88,7 +88,7 @@ class EasyPdf
     /**
      * Add an array of configurations on the pdf instance.
      *
-     * @param array $config
+     * @param  array  $config
      * @return $this
      */
     public function withConfig(array $config)
@@ -123,8 +123,8 @@ class EasyPdf
     /**
      * Add custom font on the pdf instance.
      *
-     * @param string $font
-     * @param int|null $size
+     * @param  string  $font
+     * @param  int|null  $size
      * @return EasyPdf
      */
     public function addFont(string $font, int $size = null)
@@ -139,8 +139,8 @@ class EasyPdf
     /**
      * Set given font as default font.
      *
-     * @param string $font
-     * @param int|null $size
+     * @param  string  $font
+     * @param  int|null  $size
      * @return $this
      */
     public function setFont(string $font, int $size = null)
@@ -188,7 +188,7 @@ class EasyPdf
     /**
      * Override default style for barcode.
      *
-     * @param array $style
+     * @param  array  $style
      * @return $this
      */
     public function setBarcodeStyle(array $style)
@@ -206,7 +206,7 @@ class EasyPdf
      * @param $y
      * @param $width
      * @param $height
-     * @param string $position
+     * @param  string  $position
      * @return EasyPdf
      */
     public function addQrcode($text, $x, $y, $width, $height, $position = 'N')
@@ -224,7 +224,7 @@ class EasyPdf
      * @param $y
      * @param $width
      * @param $height
-     * @param string $position
+     * @param  string  $position
      * @return EasyPdf
      */
     public function addBarcode($code, $x, $y, $width, $height, $position = 'N')
@@ -237,7 +237,7 @@ class EasyPdf
     /**
      * Set Tcpdf print header.
      *
-     * @param null $header
+     * @param  null  $header
      * @return EasyPdf
      */
     public function setHeader($header = null)
@@ -254,7 +254,7 @@ class EasyPdf
     /**
      * Set Tcpdf print footer.
      *
-     * @param null $footer
+     * @param  null  $footer
      * @return EasyPdf
      */
     public function setFooter($footer = null)
@@ -271,7 +271,7 @@ class EasyPdf
     /**
      * Save pdf to given path..
      *
-     * @param string $filename
+     * @param  string  $filename
      * @return mixed
      */
     public function save(string $filename)
@@ -318,7 +318,7 @@ class EasyPdf
     /**
      * Create a new Merge instance.
      *
-     * @param array $files
+     * @param  array  $files
      * @return Merge
      */
     public static function merge(array $files)
@@ -329,8 +329,9 @@ class EasyPdf
     /**
      * Create a new Parser instance.
      *
-     * @param string $path
+     * @param  string  $path
      * @return Parser
+     *
      * @throws Exceptions\UnableToOpen
      */
     public static function parser(string $path): Parser

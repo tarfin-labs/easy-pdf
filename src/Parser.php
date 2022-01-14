@@ -19,7 +19,8 @@ class Parser extends BasePdf
     /**
      * Parser constructor.
      *
-     * @param string $path
+     * @param  string  $path
+     *
      * @throws Exceptions\UnableToOpen
      */
     public function __construct(string $path)
@@ -45,7 +46,7 @@ class Parser extends BasePdf
     /**
      * Set page for save methods.
      *
-     * @param int $page
+     * @param  int  $page
      * @return Parser
      */
     public function setPage(int $page)
