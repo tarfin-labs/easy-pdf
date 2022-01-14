@@ -176,7 +176,12 @@ class EasyPdf
      */
     public function addImage($image, $x, $y, $width, $height)
     {
-        $this->pdf->Image($image, $x, $y, $width, $height);
+        if (str_contains(substr($image, -5), '.svg')) {
+            $this->pdf->ImageSvg($image, $x, $y, $width, $height);
+        } else {
+            $this->pdf->Image($image, $x, $y, $width, $height);
+        }
+
 
         return $this;
     }
