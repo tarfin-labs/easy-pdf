@@ -176,7 +176,7 @@ class EasyPdf
      */
     public function addImage($image, $x, $y, $width, $height)
     {
-        if (str_contains(substr($image, -5), '.svg')) {
+        if (stripos(substr($image, -5), '.svg') !== false) {
             $this->pdf->ImageSvg($image, $x, $y, $width, $height);
         } else {
             $this->pdf->Image($image, $x, $y, $width, $height);
