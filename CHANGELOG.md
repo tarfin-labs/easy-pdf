@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.3.0 - 2022-02-08
+- Add support for Laravel 9.
+
 ## 2.2.0 - 2022-01-14
 - `$pdf` variable changed to public variable in `EasyPdf.php`
 - SVG support added to `setImage` method.
