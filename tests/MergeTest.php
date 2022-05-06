@@ -15,7 +15,7 @@ class MergeTest extends TestCase
     {
         parent::setUp();
 
-        $this->file = __DIR__ . '/files/file.pdf';
+        $this->file = __DIR__.'/files/file.pdf';
 
         $this->files = [
             __DIR__.'/files/file.pdf',
