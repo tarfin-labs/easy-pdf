@@ -11,6 +11,12 @@ class Merge extends BasePdf
      */
     protected $files;
 
+    protected $watermark;
+    protected $w_x;
+    protected $w_y;
+    protected $w_width;
+    protected $w_height;
+
     /**
      * Merge constructor.
      *
@@ -21,6 +27,27 @@ class Merge extends BasePdf
         parent::__construct();
 
         $this->files = $files;
+    }
+
+    /**
+     * Add watermark to each page.
+     *
+     * @param $watermark
+     * @param $x
+     * @param $y
+     * @param $width
+     * @param $height
+     * @return $this
+     */
+    public function addWatermark($watermark, $x = null, $y = null, $width = 0, $height = 0)
+    {
+        $this->watermark = $watermark;
+        $this->w_x = $x;
+        $this->w_y = $y;
+        $this->w_width = $width;
+        $this->w_height = $height;
+
+        return $this;
     }
 
     /**
@@ -41,6 +68,9 @@ class Merge extends BasePdf
                 $this->pdf->AddPage();
                 $importedPage = $this->pdf->ImportPage($page);
                 $this->pdf->useTemplate($importedPage);
+                if ($this->watermark) {
+                    $this->pdf->Image($this->watermark, $this->w_x, $this->w_y, $this->w_width, $this->w_height);
+                }
             }
         }
 
