@@ -269,6 +269,8 @@ class EasyPdf
     }
 
     /**
+     * Sets the active page of PDF.
+     *
      * @param  int  $page
      * @return $this
      */
