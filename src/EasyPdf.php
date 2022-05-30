@@ -269,6 +269,19 @@ class EasyPdf
     }
 
     /**
+     * Sets the active page of PDF.
+     *
+     * @param  int  $page
+     * @return $this
+     */
+    public function setPage(int $page): self
+    {
+        $this->pdf->setPage($page);
+
+        return $this;
+    }
+
+    /**
      * Save pdf to given path..
      *
      * @param  string  $filename

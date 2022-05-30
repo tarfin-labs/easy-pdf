@@ -80,6 +80,12 @@ You can add image to the pdf with dimensions.
 $pdf->addImage($imagePath, 80, 60, 30, 20); // x-y coordinates and width-height
 ```
 
+You can set active page using `setPage()` method.
+```php
+// This will set the active page as 1.
+$pdf->setPage(1);
+```
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.
