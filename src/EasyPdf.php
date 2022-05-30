@@ -269,7 +269,7 @@ class EasyPdf
     }
 
     /**
-     * @param int $page
+     * @param  int  $page
      * @return $this
      */
     public function setPage(int $page): self
