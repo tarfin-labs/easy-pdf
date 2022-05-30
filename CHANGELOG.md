@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.4.0 - 2022-05-30
+- `setPage()` method added for setting current page.
+
 ## 2.3.0 - 2022-02-08
 - Add support for Laravel 9.
 
