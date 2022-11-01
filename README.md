@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/tarfin-labs/easy-pdf.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/easy-pdf)
 
 ## Introduction
-easy-pdf is a [tcpdf](https://tcpdf.org/) wrapper for Laravel 6.x, 7.x and 8.x.
+easy-pdf is a [tcpdf](https://tcpdf.org/) wrapper for Laravel 6.x, 7.x, 8.x and 9.x.
 
 ## Installation
 
@@ -114,6 +114,27 @@ $files = [
 // You can use stream or content method here as well.
 $pdf = EasyPdf::merge($files)
             ->content();
+```
+
+### Splitting pdf
+
+You can split pdf file into multiple pdf files easily using easy-pdf.
+``` php
+// Pdf path.
+// Pdf path can be path, url or blob.
+
+$file = '/path/to/the/file.pdf';
+
+// You can use splitTo method to get new pdf contents
+// chunkSize argument determines that how many page should contain every pdf file
+// For example if you want to split your pdf file as each file includes 10 page
+// Then you must set chunkSize argument to 10
+$pdfs = EasyPdf::parser($file)
+            ->splitTo(10);
+
+foreach($pdfs as $pdfContent) {
+    // Your code here
+}
 ```
 
 ### Resetting the instance

@@ -65,4 +65,19 @@ class ParserTest extends TestCase
 
         $this->assertSame('application/pdf; charset=binary', $buffer);
     }
+
+    /** @test */
+    public function it_can_split_one_file_to_multiple_files()
+    {
+        $pdfs = EasyPdf::parser($this->file)
+            ->splitTo(1);
+
+        foreach ($pdfs as $pdf) {
+            $finfo = new finfo(FILEINFO_MIME);
+            $buffer = $finfo->buffer($pdf);
+            $this->assertSame('application/pdf; charset=binary', $buffer);
+        }
+
+        $this->assertCount(3, $pdfs);
+    }
 }
