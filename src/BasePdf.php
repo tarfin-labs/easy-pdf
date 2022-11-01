@@ -115,9 +115,9 @@ abstract class BasePdf
     }
 
     /**
-     * Return the pdf or pdfs as a string.
+     * Return the pdf as a string.
      *
-     * @return string|array
+     * @return string
      */
     public function content()
     {
