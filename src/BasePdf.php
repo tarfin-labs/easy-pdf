@@ -123,10 +123,6 @@ abstract class BasePdf
     {
         $this->render();
 
-        if (method_exists($this, 'splittedFileContents')) {
-            return $this->splittedFileContents;
-        }
-
         return $this->pdf->Output('doc.pdf', 'S');
     }
 }

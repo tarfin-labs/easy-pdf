@@ -340,18 +340,6 @@ class EasyPdf
     }
 
     /**
-     * Create a new Split instance.
-     *
-     * @param string $fileContent
-     * @param int $chunkSize
-     * @return \TarfinLabs\EasyPdf\Split
-     */
-    public static function split(string $fileContent, int $chunkSize)
-    {
-        return new Split($fileContent, $chunkSize);
-    }
-
-    /**
      * Create a new Parser instance.
      *
      * @param  string  $path
