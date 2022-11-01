@@ -61,7 +61,6 @@ class Parser extends BasePdf
      * Returns splitted pdf file contents.
      *
      * @param  int  $chunkSize
-     *
      * @return array
      *
      * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
