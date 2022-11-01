@@ -8,7 +8,7 @@ use setasign\Fpdi\Tcpdf\Fpdi;
 class Split extends BasePdf
 {
     /** @var string */
-    protected $fileContent;
+    protected $file;
 
     /** @var int */
     protected $chunkSize;
@@ -19,14 +19,14 @@ class Split extends BasePdf
     /**
      * Split constructor.
      *
-     * @param string $fileContent
+     * @param string $file
      * @param int $chunkSize
      */
-    public function __construct(string $fileContent, int $chunkSize)
+    public function __construct(string $file, int $chunkSize)
     {
         parent::__construct();
 
-        $this->fileContent = $fileContent;
+        $this->file = $file;
         $this->chunkSize = $chunkSize;
     }
 
@@ -37,13 +37,17 @@ class Split extends BasePdf
      */
     public function render()
     {
-        $fileCount = EasyPdf::parser($this->fileContent)->count();
+        $this->setFileContent($this->file);
+
+        $fileCount = EasyPdf::parser($this->content)->count();
 
         $chunks = array_chunk(range(1, $fileCount), $this->chunkSize);
 
+        $streamReader = StreamReader::createByString($this->content);
+
         foreach ($chunks as $chunk) {
             $this->pdf = new Fpdi();
-            $this->pdf->setSourceFile(StreamReader::createByString($this->fileContent));
+            $this->pdf->setSourceFile($streamReader);
 
             foreach ($chunk as $index) {
                 $this->pdf->AddPage();
