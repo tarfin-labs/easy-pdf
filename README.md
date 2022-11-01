@@ -125,12 +125,12 @@ You can split pdf file into multiple pdf files easily using easy-pdf.
 
 $file = '/path/to/the/file.pdf';
 
-// You can use content method to get new pdf contents
-// Second argument chunkSize determines that how many page should contain every pdf file
+// You can use splitTo method to get new pdf contents
+// chunkSize argument determines that how many page should contain every pdf file
 // For example if you want to split your pdf file as each file includes 10 page
-// Then you must set second argument to 10
-$pdfs = EasyPdf::split($file, 10)
-            ->content();
+// Then you must set chunkSize argument to 10
+$pdfs = EasyPdf::parser($file)
+            ->splitTo(10);
 
 foreach($pdfs as $pdfContent) {
     // Your code here
