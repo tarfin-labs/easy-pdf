@@ -115,13 +115,17 @@ abstract class BasePdf
     }
 
     /**
-     * Return the pdf as a string.
+     * Return the pdf or pdfs as a string.
      *
-     * @return string
+     * @return string|array
      */
     public function content()
     {
         $this->render();
+
+        if (method_exists($this, 'splittedFileContents')) {
+            return $this->splittedFileContents;
+        }
 
         return $this->pdf->Output('doc.pdf', 'S');
     }
