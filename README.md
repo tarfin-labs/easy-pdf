@@ -116,6 +116,27 @@ $pdf = EasyPdf::merge($files)
             ->content();
 ```
 
+### Splitting pdf
+
+You can split pdf file into multiple pdf files easily using easy-pdf.
+``` php
+// Pdf path.
+// Pdf path can be path, url or blob.
+
+$file = '/path/to/the/file.pdf';
+
+// You can use content method to get new pdf contents
+// Second argument chunkSize determines that how many page should contain every pdf file
+// For example if you want to split your pdf file as each file includes 10 page
+// Then you must set second argument to 10
+$pdfs = EasyPdf::split($file, 10)
+            ->content();
+
+foreach($pdfs as $pdfContent) {
+    // Your code here
+}
+```
+
 ### Resetting the instance
 If you try to generate pdf inside a Laravel queue, sometimes there might occure an error like `undefined property: TCPDF::$h`.
 
