@@ -3,6 +3,7 @@
 namespace TarfinLabs\EasyPdf;
 
 use setasign\Fpdi\PdfParser\StreamReader;
+use setasign\Fpdi\Tcpdf\Fpdi;
 
 class Parser extends BasePdf
 {
@@ -54,6 +55,42 @@ class Parser extends BasePdf
         $this->page = $page;
 
         return $this;
+    }
+
+    /**
+     * Returns splitted pdf file contents
+     *
+     * @param int $chunkSize
+     *
+     * @return array
+     *
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
+     */
+    public function splitTo(int $chunkSize)
+    {
+        $chunks = array_chunk(range(1, $this->count()), $chunkSize);
+
+        $streamReader = StreamReader::createByString($this->content);
+
+        $splittedFileContents = [];
+
+        foreach ($chunks as $chunk) {
+            $this->pdf = new Fpdi();
+            $this->pdf->setSourceFile($streamReader);
+
+            foreach ($chunk as $index) {
+                $this->pdf->AddPage();
+                $this->pdf->useTemplate($this->pdf->importPage($index));
+            }
+
+            $splittedFileContents[] = $this->pdf->Output('doc.pdf', 'S');
+        }
+
+        return $splittedFileContents;
     }
 
     /**
