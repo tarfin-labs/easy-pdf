@@ -24,7 +24,7 @@ class SplitTest extends TestCase
      */
     public function it_can_split_one_file_to_multiple_files()
     {
-        $pdfs = EasyPdf::split(file_get_contents($this->file), 1)
+        $pdfs = EasyPdf::split($this->file, 1)
             ->content();
 
         foreach ($pdfs as $pdf) {
