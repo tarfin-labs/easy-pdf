@@ -58,9 +58,9 @@ class Parser extends BasePdf
     }
 
     /**
-     * Returns splitted pdf file contents
+     * Returns splitted pdf file contents.
      *
-     * @param int $chunkSize
+     * @param  int  $chunkSize
      *
      * @return array
      *
