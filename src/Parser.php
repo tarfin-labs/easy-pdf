@@ -79,6 +79,9 @@ class Parser extends BasePdf
 
         foreach ($chunks as $chunk) {
             $this->pdf = new Fpdi();
+            $this->pdf->setPrintHeader(false);
+            $this->pdf->setPrintFooter(false);
+
             $this->pdf->setSourceFile($streamReader);
 
             foreach ($chunk as $index) {
