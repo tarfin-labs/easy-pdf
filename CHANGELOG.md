@@ -3,7 +3,7 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
-## 2.6.0 - 2022-15-11
+## 2.5.1 - 2022-15-11
 - Add `setPrintHeader(false)` and `setPrintFooter(false)` to delete unnecessary line in header and footer.
 
 ## 2.5.0 - 2022-01-11
