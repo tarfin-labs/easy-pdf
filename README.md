@@ -105,6 +105,12 @@ You can set header margin using `setHeaderMargin()` method.
 $pdf->setHeaderMargin(10);
 ```
 
+You can set test and line colors of footer using `setFooterData()` method.
+```php
+// The first parameter is text color and the last one is line color.
+$pdf->setFooterData([0, 64, 255], [0, 64, 128]);
+```
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.

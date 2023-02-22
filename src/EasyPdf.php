@@ -171,6 +171,13 @@ class EasyPdf
         return $this;
     }
 
+    public function setFooterData(array $textColor = [], array $lineColor = [])
+    {
+        $this->pdf->setFooterData($textColor, $lineColor);
+
+        return $this;
+    }
+
     /**
      * Write html content.
      *
