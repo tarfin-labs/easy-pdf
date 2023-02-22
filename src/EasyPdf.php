@@ -157,10 +157,10 @@ class EasyPdf
     /**
      * Set page margins.
      *
-     * @param float|int $left
-     * @param float|int $top
-     * @param float|int $right
-     * @param boolean $keepMargins
+     * @param  float|int  $left
+     * @param  float|int  $top
+     * @param  float|int  $right
+     * @param  bool  $keepMargins
      * @return $this
      */
     public function setMargins($left, $top, $right = null, bool $keepMargins = false)
