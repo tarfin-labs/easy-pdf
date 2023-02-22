@@ -93,6 +93,12 @@ You can set margins using `setMargins()` method.
 $pdf->setMargins(10, 15, 20, true);
 ```
 
+You can add image to page header using `setHeaderData()` method.
+```php
+// $textColor and $lineColor must be RGB as array format. '[255, 255, 255]'
+$pdf->setHeaderData($image, $width, $textColor, $lineColor);
+```
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.

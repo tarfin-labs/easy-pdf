@@ -156,6 +156,14 @@ class EasyPdf
 
         return $this;
     }
+
+    public function setHeaderData(string $image, int $width, array $textColor = [], array $lineColor = [])
+    {
+        $this->pdf->setHeaderData($image, $width, '', '', $textColor, $lineColor);
+
+        return $this;
+    }
+
     /**
      * Write html content.
      *
