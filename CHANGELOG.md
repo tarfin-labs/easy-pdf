@@ -3,6 +3,18 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.7.0 - 2023-02-22
+- Add `setMargins()` method.
+- Add `setHeaderData()` method.
+- Add `setHeaderMargin()` method.
+- Add `setFooterData()` method.
+- Add `setFooterMargin()` method.
+- Add `setFooterFontSize()` method.
+- Add `imagePath` constructor parameter to set `K_PATH_IMAGES` constant.
+
+## 2.6.0 - 2023-02-16
+- Add laravel 10 support.
+
 ## 2.5.1 - 2022-15-11
 - Add `setPrintHeader(false)` and `setPrintFooter(false)` to delete unnecessary line in header and footer.
 

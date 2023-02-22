@@ -43,8 +43,12 @@ class EasyPdf
     /**
      * EasyPdf constructor.
      */
-    public function __construct()
+    public function __construct(?string $imagePath = null)
     {
+        if ($imagePath !== null) {
+            define('K_PATH_IMAGES', $imagePath);
+        }
+
         $this->pdf = new TCPDF();
         $this->pdf->setPrintHeader($this->header);
         $this->pdf->setPrintFooter($this->footer);
@@ -146,6 +150,91 @@ class EasyPdf
     public function setFont(string $font, int $size = null)
     {
         $this->pdf->SetFont($font, '', $size);
+
+        return $this;
+    }
+
+    /**
+     * Set page margins.
+     *
+     * @param  float|int  $left
+     * @param  float|int  $top
+     * @param  float|int  $right
+     * @param  bool  $keepMargins
+     * @return $this
+     */
+    public function setMargins($left, $top, $right = null, bool $keepMargins = false)
+    {
+        $this->pdf->setMargins($left, $top, $right, $keepMargins);
+
+        return $this;
+    }
+
+    /**
+     * Add image to header.
+     *
+     * @param  string  $image
+     * @param  int  $width
+     * @param  array  $textColor
+     * @param  array  $lineColor
+     * @return $this
+     */
+    public function setHeaderData(string $image, int $width, array $textColor = [], array $lineColor = [])
+    {
+        $this->pdf->setHeaderData($image, $width, '', '', $textColor, $lineColor);
+
+        return $this;
+    }
+
+    /**
+     * Set header margin.
+     *
+     * @param  int  $margin
+     * @return $this
+     */
+    public function setHeaderMargin(int $margin)
+    {
+        $this->pdf->setHeaderMargin($margin);
+
+        return $this;
+    }
+
+    /**
+     * Set footer text and line colors.
+     *
+     * @param  array  $textColor
+     * @param  array  $lineColor
+     * @return $this
+     */
+    public function setFooterData(array $textColor = [], array $lineColor = [])
+    {
+        $this->pdf->setFooterData($textColor, $lineColor);
+
+        return $this;
+    }
+
+    /**
+     * Set footer margin.
+     *
+     * @param  int  $margin
+     * @return $this
+     */
+    public function setFooterMargin(int $margin)
+    {
+        $this->pdf->setFooterMargin($margin);
+
+        return $this;
+    }
+
+    /**
+     * Set footer font size.
+     *
+     * @param  int|null  $size
+     * @return $this
+     */
+    public function setFooterFontSize(?int $size = null)
+    {
+        $this->pdf->setFooterFont([PDF_FONT_NAME_DATA, '', $size ?? PDF_FONT_SIZE_DATA]);
 
         return $this;
     }

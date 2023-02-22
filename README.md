@@ -86,6 +86,45 @@ You can set active page using `setPage()` method.
 $pdf->setPage(1);
 ```
 
+You can set margins using `setMargins()` method.
+```php
+// This will set margin as 10 for left, 15 for top, 20 for right
+// and overwrite the default margins.  
+$pdf->setMargins(10, 15, 20, true);
+```
+
+You can add image to page header using `setHeaderData()` method.
+```php
+// $textColor and $lineColor must be RGB as array format. '[255, 255, 255]'
+$pdf->setHeaderData($image, $width, $textColor, $lineColor);
+```
+
+You can set header margin using `setHeaderMargin()` method.
+```php
+// This will set the minimum distance between header and top page margin. 
+$pdf->setHeaderMargin(10);
+```
+
+You can set test and line colors of footer using `setFooterData()` method.
+```php
+// The first parameter is text color and the last one is line color.
+$pdf->setFooterData([0, 64, 255], [0, 64, 128]);
+```
+
+You can set footer margin using `setFooterMargin()` method.
+```php
+// This will set the minimum distance between footer and bottom page margin. 
+$pdf->setFooterMargin(10);
+```
+
+You can set footer font using `setFooterFontSize()` method.
+```php
+// This will set the footer font size to 10.
+$pdf->setFooterFontSize(10);
+```
+
+You can add 
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.
