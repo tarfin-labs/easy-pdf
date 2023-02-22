@@ -117,6 +117,12 @@ You can set footer margin using `setFooterMargin()` method.
 $pdf->setFooterMargin(10);
 ```
 
+You can set footer font using `setFooterFontSize()` method.
+```php
+// This will set the footer font size to 10.
+$pdf->setFooterFontSize(10);
+```
+
 You can add 
 
 ### Parsing pdf

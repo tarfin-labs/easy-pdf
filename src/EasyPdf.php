@@ -185,6 +185,13 @@ class EasyPdf
         return $this;
     }
 
+    public function setFooterFontSize(?int $size = null)
+    {
+        $this->pdf->setFooterFont([PDF_FONT_NAME_DATA, '', $size ?? PDF_FONT_SIZE_DATA]);
+
+        return $this;
+    }
+
     /**
      * Write html content.
      *
