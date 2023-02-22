@@ -86,6 +86,13 @@ You can set active page using `setPage()` method.
 $pdf->setPage(1);
 ```
 
+You can set margins using `setMargins()` method.
+```php
+// This will set margin as 10 for left, 15 for top, 20 for right
+// and overwrite the default margins.  
+$pdf->setMargins(10, 15, 20, true);
+```
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.

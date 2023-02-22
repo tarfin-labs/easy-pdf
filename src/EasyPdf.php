@@ -150,6 +150,12 @@ class EasyPdf
         return $this;
     }
 
+    public function setMargins($left, $top, $right = null, $keepMargins = false)
+    {
+        $this->pdf->setMargins($left, $top, $right, $keepMargins);
+
+        return $this;
+    }
     /**
      * Write html content.
      *
