@@ -178,6 +178,13 @@ class EasyPdf
         return $this;
     }
 
+    public function setFooterMargin(int $margin)
+    {
+        $this->pdf->setFooterMargin($margin);
+
+        return $this;
+    }
+
     /**
      * Write html content.
      *

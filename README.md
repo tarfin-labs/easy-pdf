@@ -111,6 +111,14 @@ You can set test and line colors of footer using `setFooterData()` method.
 $pdf->setFooterData([0, 64, 255], [0, 64, 128]);
 ```
 
+You can set footer margin using `setFooterMargin()` method.
+```php
+// This will set the minimum distance between footer and bottom page margin. 
+$pdf->setFooterMargin(10);
+```
+
+You can add 
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.
