@@ -43,8 +43,12 @@ class EasyPdf
     /**
      * EasyPdf constructor.
      */
-    public function __construct()
+    public function __construct(?string $imagePath = null)
     {
+        if ($imagePath !== null) {
+            define('K_PATH_IMAGES', $imagePath);
+        }
+
         $this->pdf = new TCPDF();
         $this->pdf->setPrintHeader($this->header);
         $this->pdf->setPrintFooter($this->footer);
