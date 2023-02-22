@@ -164,6 +164,13 @@ class EasyPdf
         return $this;
     }
 
+    public function setHeaderMargin(int $margin)
+    {
+        $this->pdf->setHeaderMargin($margin);
+
+        return $this;
+    }
+
     /**
      * Write html content.
      *

@@ -99,6 +99,12 @@ You can add image to page header using `setHeaderData()` method.
 $pdf->setHeaderData($image, $width, $textColor, $lineColor);
 ```
 
+You can set header margin using `setHeaderMargin()` method.
+```php
+// This will set the minimum distance between header and top page margin. 
+$pdf->setHeaderMargin(10);
+```
+
 ### Parsing pdf
 
 You can parse the pdf and get the page you want.
