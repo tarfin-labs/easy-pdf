@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.8.0 - 2023-05-11
+- Php 8.2 support added.
+
 ## 2.7.0 - 2023-02-22
 - Add `setMargins()` method.
 - Add `setHeaderData()` method.
