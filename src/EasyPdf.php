@@ -72,8 +72,8 @@ class EasyPdf
     /**
      * Set an information on the pdf instance.
      *
-     * @param $information
-     * @param $value
+     * @param  $information
+     * @param  $value
      * @return EasyPdf
      */
     protected function setInformation($information, $value)
@@ -107,8 +107,8 @@ class EasyPdf
     /**
      * Set a configuration on the pdf instance.
      *
-     * @param $config
-     * @param $value
+     * @param  $config
+     * @param  $value
      * @return $this
      */
     protected function setConfig($config, $value)
@@ -242,7 +242,7 @@ class EasyPdf
     /**
      * Write html content.
      *
-     * @param $html
+     * @param  $html
      * @return EasyPdf
      */
     public function loadHtml($html)
@@ -256,11 +256,11 @@ class EasyPdf
     /**
      * Add image to the pdf with given position and size.
      *
-     * @param $image
-     * @param $x
-     * @param $y
-     * @param $width
-     * @param $height
+     * @param  $image
+     * @param  $x
+     * @param  $y
+     * @param  $width
+     * @param  $height
      * @return EasyPdf
      */
     public function addImage($image, $x, $y, $width, $height)
@@ -290,11 +290,11 @@ class EasyPdf
     /**
      * Add qrcode with best error correction to the pdf with given position and size.
      *
-     * @param $text
-     * @param $x
-     * @param $y
-     * @param $width
-     * @param $height
+     * @param  $text
+     * @param  $x
+     * @param  $y
+     * @param  $width
+     * @param  $height
      * @param  string  $position
      * @return EasyPdf
      */
@@ -308,11 +308,11 @@ class EasyPdf
     /**
      * Add RAW2 barcode to the pdf with given position and size.
      *
-     * @param $code
-     * @param $x
-     * @param $y
-     * @param $width
-     * @param $height
+     * @param  $code
+     * @param  $x
+     * @param  $y
+     * @param  $width
+     * @param  $height
      * @param  string  $position
      * @return EasyPdf
      */
