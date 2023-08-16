@@ -440,4 +440,17 @@ class EasyPdf
     {
         return new Parser($path);
     }
+
+    /**
+     * Set viewer preferences
+     *
+     * @param array $preferences
+     * @return EasyPdf
+     */
+    public function setViewerPreferences(array $preferences)
+    {
+        $this->pdf->setViewerPreferences($preferences);
+
+        return $this;
+    }
 }
