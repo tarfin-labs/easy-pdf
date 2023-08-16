@@ -442,14 +442,14 @@ class EasyPdf
     }
 
     /**
-     * Set viewer preferences
+     * Set string for duplex attribute
      *
-     * @param array $preferences
+     * @param string $name
      * @return EasyPdf
      */
-    public function setViewerPreferences(array $preferences)
+    public function setDuplex(string $name)
     {
-        $this->pdf->setViewerPreferences($preferences);
+        $this->pdf->setViewerPreferences(["Duplex" => $name]);
 
         return $this;
     }
