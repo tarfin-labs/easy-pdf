@@ -122,6 +122,11 @@ You can set footer font using `setFooterFontSize()` method.
 // This will set the footer font size to 10.
 $pdf->setFooterFontSize(10);
 ```
+You can set the viewer preferences dictionary, which controls how the document is presented on screen or in print, using `setViewerPreferences`.
+```php
+// This will set the print to single sided. 
+$pdf->setViewerPreferences(array('Duplex' => 'Simplex'));
+```
 
 You can add 
 
