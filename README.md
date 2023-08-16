@@ -122,6 +122,17 @@ You can set footer font using `setFooterFontSize()` method.
 // This will set the footer font size to 10.
 $pdf->setFooterFontSize(10);
 ```
+You can set paper handling option to use when printing the file from the print dialog.
+```php
+// This will set the print to single sided. 
+$pdf->setDuplex('Simplex'); 
+
+// This will set duplex and flip on the short edge of the sheet
+$pdf->setDuplex('DuplexFlipShortEdge'); 
+
+// This will set duplex and flip on the long edge of the sheet
+$pdf->setDuplex('DuplexFlipLongEdge'); 
+```
 
 You can add 
 
