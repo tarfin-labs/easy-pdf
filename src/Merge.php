@@ -32,11 +32,11 @@ class Merge extends BasePdf
     /**
      * Add watermark to each page.
      *
-     * @param $watermark
-     * @param $x
-     * @param $y
-     * @param $width
-     * @param $height
+     * @param  $watermark
+     * @param  $x
+     * @param  $y
+     * @param  $width
+     * @param  $height
      * @return $this
      */
     public function addWatermark($watermark, $x = null, $y = null, $width = 0, $height = 0)

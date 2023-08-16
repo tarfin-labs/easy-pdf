@@ -31,7 +31,7 @@ abstract class BasePdf
     /**
      * Check for url given path.
      *
-     * @param $url
+     * @param  $url
      * @return bool
      */
     protected function validUrl($url)
@@ -46,7 +46,7 @@ abstract class BasePdf
     /**
      * Check file type from string content is pdf.
      *
-     * @param $content
+     * @param  $content
      * @return string
      */
     protected function mimeType($content)
@@ -65,7 +65,7 @@ abstract class BasePdf
     /**
      * Set file content.
      *
-     * @param $pdf
+     * @param  $pdf
      *
      * @throws UnableToOpen
      */
