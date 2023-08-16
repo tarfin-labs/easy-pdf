@@ -30,6 +30,7 @@ class PdfTest extends TestCase
                 'ImageScale' => PDF_IMAGE_SCALE_RATIO,
             ])
             ->setFont('helvetica', 16)
+            ->setDuplex('Simplex')
             ->loadHtml($html)
             ->content();
 
