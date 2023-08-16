@@ -444,7 +444,7 @@ class EasyPdf
     /**
      * Set string for duplex attribute
      *
-     * @param string $name
+     * @param  string  $name
      * @return EasyPdf
      */
     public function setDuplex(string $name)
