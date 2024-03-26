@@ -22,8 +22,8 @@ class PdfTest extends TestCase
             'Title' => 'Tarfin',
             'Subject' => 'Tarfin',
             'Keywords' => 'easy-pdf, pdf',
-            'Creator'   => 'Tarfin',
-            'Author'    => 'Faruk Can',
+            'Creator' => 'Tarfin',
+            'Author' => 'Faruk Can',
             'AutoPageBreak' => [true, 0],
         ])
             ->withConfig([
