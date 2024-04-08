@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 3.0.0 - 2024-04-08
+- Laravel 11 and PHP 8.3 support added.
+
 ## 2.9.0 - 2023-08-16
 - `setDuplex()` method added.
 
