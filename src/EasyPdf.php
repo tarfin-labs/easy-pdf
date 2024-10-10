@@ -45,7 +45,7 @@ class EasyPdf
      */
     public function __construct(?string $imagePath = null)
     {
-        if ($imagePath !== null) {
+        if ($imagePath !== null && ! defined('K_PATH_IMAGES')) {
             define('K_PATH_IMAGES', $imagePath);
         }
 
