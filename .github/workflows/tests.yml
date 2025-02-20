@@ -1,6 +1,11 @@
 name: tests
 
-on: [push, pull_request]
+on:
+    push:
+        branches:
+          - master
+          - '*.x'
+    pull_request:
 
 jobs:
     test:
@@ -84,8 +89,12 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  composer require "illuminate/support:^${{ matrix.laravel }}.0" --no-update
-                  composer update --prefer-dist --no-interaction --no-progress --no-suggest
+                  if [ "${{ matrix.laravel }}" = "12" ]; then
+                      composer require "illuminate/support:^12.0@dev" --no-update
+                  else
+                      composer require "illuminate/support:^${{ matrix.laravel }}.0" --no-update
+                  fi
+                  composer update --prefer-dist --no-interaction --no-progress
 
             - name: Execute tests
               run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped
