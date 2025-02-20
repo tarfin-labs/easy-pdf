@@ -82,10 +82,10 @@ jobs:
                   tools: composer:v2
                   coverage: none
 
-            -   name: Install dependencies
-                run: |
-                    composer require "illuminate/support:${{ matrix.laravel }}" --no-update
-                    composer update --prefer-dist --no-interaction --no-progress --no-suggest
+            - name: Install dependencies
+              run: |
+                  composer require "illuminate/support:^${{ matrix.laravel }}.0" --no-update
+                  composer update --prefer-dist --no-interaction --no-progress --no-suggest
 
-            -   name: Execute tests
-                run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped
+            - name: Execute tests
+              run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped
