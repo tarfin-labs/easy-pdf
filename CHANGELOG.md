@@ -3,6 +3,9 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 2.11.0 - 2025-02-10
+- Laravel 12 and PHP 8.4 support added.
+
 ## 2.10.1 - 2024-10-10
 - Fix re-defining `K_PATH_IMAGES` constant bug.
 
