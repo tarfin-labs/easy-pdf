@@ -131,7 +131,7 @@ class EasyPdf
      * @param  int|null  $size
      * @return EasyPdf
      */
-    public function addFont(string $font, int $size = null)
+    public function addFont(string $font, ?int $size = null)
     {
         $tcpdfFont = TCPDF_FONTS::addTTFfont($font);
 
@@ -147,7 +147,7 @@ class EasyPdf
      * @param  int|null  $size
      * @return $this
      */
-    public function setFont(string $font, int $size = null)
+    public function setFont(string $font, ?int $size = null)
     {
         $this->pdf->SetFont($font, '', $size);
 
