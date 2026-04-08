@@ -3,6 +3,10 @@ All notable changes to `easy-pdf` will be documented in this file.
 
 ## [Unreleased]
 
+## 3.0.0 - 2026-04-02
+- Laravel 13 and PHP 8.5 support added.
+- Dropped support for PHP < 8.3 and Laravel < 13.
+
 ## 2.11.0 - 2025-02-10
 - Laravel 12 and PHP 8.4 support added.
 

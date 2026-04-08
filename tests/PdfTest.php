@@ -3,12 +3,13 @@
 namespace TarfinLabs\EasyPdf\Tests;
 
 use finfo;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use TarfinLabs\EasyPdf\EasyPdf;
 
 class PdfTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_convert_html_to_pdf()
     {
         $filePath = sys_get_temp_dir().'html.pdf';

@@ -3,6 +3,7 @@
 namespace TarfinLabs\EasyPdf\Tests;
 
 use finfo;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use TarfinLabs\EasyPdf\EasyPdf;
 
@@ -23,7 +24,7 @@ class MergeTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function it_can_merge_multiple_files_into_one_file()
     {
         $pdf = EasyPdf::merge($this->files)
@@ -35,7 +36,7 @@ class MergeTest extends TestCase
         $this->assertSame('application/pdf; charset=binary', $buffer);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_watermark_into_the_file()
     {
         $easyPdf = new EasyPdf();
