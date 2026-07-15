@@ -96,6 +96,85 @@ class Parser extends BasePdf
     }
 
     /**
+     * Splits the PDF into multiple files using a default chunk size while
+     * preserving the specified page ranges as individual chunks.
+     *
+     * Exception ranges are never split, even if they exceed the default chunk size.
+     *
+     * @param  int  $defaultChunkSize  Default number of pages per split.
+     * @param  array<int, array{0:int, 1:int}>  $exceptions  Page ranges to keep
+     *                                                       together, where each range is in the format [startPage, endPage].
+     * @return array<string>
+     *
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\Filter\FilterException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \setasign\Fpdi\PdfReader\PdfReaderException
+     */
+    public function splitWithExceptions(int $defaultChunkSize, array $exceptions = [])
+    {
+        $totalPages = $this->count();
+        $streamReader = StreamReader::createByString($this->content);
+
+        usort($exceptions, function ($a, $b) {
+            return $a[0] <=> $b[0];
+        });
+
+        $splittedFileContents = [];
+        $currentPage = 1;
+        $exceptionIndex = 0;
+
+        while ($currentPage <= $totalPages) {
+
+            $nextException = $exceptions[$exceptionIndex] ?? null;
+
+            if ($nextException) {
+
+                [$exceptionStart, $exceptionEnd] = $nextException;
+
+                if ($currentPage == $exceptionStart) {
+
+                    $lastPage = min($exceptionEnd, $totalPages);
+
+                    $exceptionIndex++;
+
+                } elseif ($currentPage < $exceptionStart && ($currentPage + $defaultChunkSize - 1) >= $exceptionStart) {
+                    $lastPage = $exceptionStart - 1;
+
+                } else {
+                    $lastPage = min($currentPage + $defaultChunkSize - 1, $totalPages);
+                }
+            } else {
+                $lastPage = min($currentPage + $defaultChunkSize - 1, $totalPages);
+            }
+
+            $this->pdf = new Fpdi();
+            $this->pdf->setPrintHeader(false);
+            $this->pdf->setPrintFooter(false);
+
+            $this->pdf->setSourceFile($streamReader);
+
+            for ($page = $currentPage; $page <= $lastPage; $page++) {
+
+                $templateId = $this->pdf->importPage($page, '/CropBox');
+
+                $size = $this->pdf->getTemplateSize($templateId);
+
+                $this->pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
+
+                $this->pdf->useTemplate($templateId, 0, 0, $size['width'], $size['height'], true);
+            }
+
+            $splittedFileContents[] = $this->pdf->Output('doc.pdf', 'S');
+
+            $currentPage = $lastPage + 1;
+        }
+
+        return $splittedFileContents;
+    }
+
+    /**
      * Render given source.
      *
      * @return Parser
