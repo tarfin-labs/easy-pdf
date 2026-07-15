@@ -81,4 +81,25 @@ class ParserTest extends TestCase
 
         $this->assertCount(3, $pdfs);
     }
+
+    #[Test]
+    public function it_can_split_pdf_with_exception_ranges()
+    {
+        $pdfs = EasyPdf::parser($this->file)
+            ->splitWithExceptions(1, [
+                [2, 3],
+            ]);
+
+        $this->assertCount(2, $pdfs);
+
+        $this->assertEquals(
+            1,
+            EasyPdf::parser($pdfs[0])->count()
+        );
+
+        $this->assertEquals(
+            2,
+            EasyPdf::parser($pdfs[1])->count()
+        );
+    }
 }

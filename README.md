@@ -188,6 +188,32 @@ foreach($pdfs as $pdfContent) {
     // Your code here
 }
 ```
+#### Split pdf with custom page ranges
+
+You can split pdf files with custom page ranges that should remain together using `splitWithExceptions` method.
+
+```php
+// Pdf path.
+// Pdf path can be path, url or blob.
+
+$file = '/path/to/the/file.pdf';
+
+// You can use splitWithExceptions method to split pdf files
+// defaultChunkSize determines the default number of pages per split file
+// exceptions contains page ranges that should remain together
+// For example, [5, 8] means pages 5 to 8 will be kept in the same pdf file.
+
+$pdfs = EasyPdf::parser($file)
+            ->splitWithExceptions(3, [
+                [5, 8],
+                [12, 15],
+            ]);
+
+foreach($pdfs as $pdfContent) {
+    // Your code here
+}
+```
+
 
 ### Resetting the instance
 If you try to generate pdf inside a Laravel queue, sometimes there might occure an error like `undefined property: TCPDF::$h`.
