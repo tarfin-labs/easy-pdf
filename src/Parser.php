@@ -103,7 +103,7 @@ class Parser extends BasePdf
      *
      * @param  int  $defaultChunkSize  Default number of pages per split.
      * @param  array<int, array{0:int, 1:int}>  $exceptions  Page ranges to keep
-     *         together, where each range is in the format [startPage, endPage].
+     *                                                       together, where each range is in the format [startPage, endPage].
      * @return array<string>
      *
      * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
@@ -139,13 +139,13 @@ class Parser extends BasePdf
 
                     $exceptionIndex++;
 
-                }elseif ($currentPage < $exceptionStart && ($currentPage + $defaultChunkSize - 1) >= $exceptionStart) {
+                } elseif ($currentPage < $exceptionStart && ($currentPage + $defaultChunkSize - 1) >= $exceptionStart) {
                     $lastPage = $exceptionStart - 1;
 
-                }else {
+                } else {
                     $lastPage = min($currentPage + $defaultChunkSize - 1, $totalPages);
                 }
-            }else {
+            } else {
                 $lastPage = min($currentPage + $defaultChunkSize - 1, $totalPages);
             }
 
